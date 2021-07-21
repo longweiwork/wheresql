@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class WhereSqlApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(WhereSqlApplication.class, args);
     }
 }
