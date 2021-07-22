@@ -1,5 +1,7 @@
 package cn.lw.wheresql.operator;
 
+import cn.lw.wheresql.pojo.SearchColumn;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.JarURLConnection;
@@ -36,6 +38,22 @@ public class OperatorFactory {
                 }
             }
         }
+    }
+
+    /**
+     * 构建操作链
+     * @param searchColumns
+     * @return
+     */
+    public static OperatorChain buildOperatorChain(List<SearchColumn> searchColumns) {
+        List<Operator> list = new ArrayList<>();
+        for (SearchColumn searchColumn : searchColumns) {
+            if (null == operators.get(searchColumn.getCompareOperation())) {
+                throw new RuntimeException(String.format("查询条件设置错误SearchColumn[%s]", searchColumn.toString()));
+            }
+            list.add(operators.get(searchColumn.getCompareOperation()));
+        }
+        return new OperatorChain(list, searchColumns);
     }
 
     /**
