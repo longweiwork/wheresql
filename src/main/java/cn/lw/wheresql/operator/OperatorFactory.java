@@ -1,5 +1,6 @@
 package cn.lw.wheresql.operator;
 
+import cn.lw.wheresql.exception.ServiceException;
 import cn.lw.wheresql.pojo.SearchColumn;
 
 import java.io.File;
@@ -49,7 +50,7 @@ public class OperatorFactory {
         List<Operator> list = new ArrayList<>();
         for (SearchColumn searchColumn : searchColumns) {
             if (null == operators.get(searchColumn.getCompareOperation())) {
-                throw new RuntimeException(String.format("查询条件设置错误SearchColumn[%s]", searchColumn.toString()));
+                throw new ServiceException(String.format("查询条件设置错误SearchColumn[%s]", searchColumn.toString()));
             }
             list.add(operators.get(searchColumn.getCompareOperation()));
         }
