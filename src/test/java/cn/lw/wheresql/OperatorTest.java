@@ -23,6 +23,7 @@ public class OperatorTest {
     @Test
     public void testOperator() {
         List<SearchColumn> searchColumns = new ArrayList<>();
+        searchColumns.add(SearchColumn.builder().columnKey("name").searchValue("longwei").compareOperation("eq").build());
         String whereSql = OperatorFactory.buildOperatorChain(searchColumns).jointAndSearchParam();
         System.out.println(whereSql);
     }
